@@ -15,7 +15,6 @@ md_original: vhh_protein
 score_list: bach,pisa,zrank,irad,bmf-bluues,firedock
 threshold: 3
 scoring: consensus
-t_effective: 0.5
 mutation_method: faspr
 scwrl_path: /usr/local/bin/scwrl4/Scwrl4
 gmxrc_path: /usr/local/gromacs/bin/GMXRC
