@@ -3,6 +3,7 @@ src_route: /home/PARCE-1
 mode: start
 peptide_reference: AAPAAAPP
 pdbID: 1ppg_AAPAAAPP
+target: protein
 chain: B
 sim_time: 5
 num_mutations: 30
@@ -13,5 +14,6 @@ md_route: /home/PARCE-1/design_input/peptide_protein
 md_original: peptide_example
 score_list: bach,pisa,zrank,irad,bmf-bluues,firedock
 threshold: 3
+scoring: consensus
 mutation_method: faspr
 gmxrc_path: /usr/local/gromacs/bin/GMXRC
