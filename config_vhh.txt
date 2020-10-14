@@ -3,6 +3,7 @@ src_route: /home/PARCE-1
 mode: start
 peptide_reference: GNHPLYYA
 pdbID: vhh_GNHPLYYA
+target: protein
 chain: B
 sim_time: 5
 num_mutations: 30
@@ -13,6 +14,8 @@ md_route: /home/PARCE-1/design_input/protein_protein
 md_original: vhh_protein
 score_list: bach,pisa,zrank,irad,bmf-bluues,firedock
 threshold: 3
+scoring: consensus
+t_effective: 0.5
 mutation_method: faspr
 scwrl_path: /usr/local/bin/scwrl4/Scwrl4
 gmxrc_path: /usr/local/gromacs/bin/GMXRC
