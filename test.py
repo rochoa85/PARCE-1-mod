@@ -54,6 +54,9 @@ if __name__ == '__main__':
     sim_time="5"
     num_mutations=5
     try_mutations=10
+    target="protein"
+    t_effective=0.5
+    scoring_s="consensus"
     src_route=route
     
     # Additional variables for the main script
@@ -86,7 +89,7 @@ if __name__ == '__main__':
     # 1. Test Gromacs functionality
     try:
         print("1. Starting the test of Gromacs functionalities ...")
-        protein_complex=general.complex(chain,pdbID,iteration,score_list,threshold,num_mutations,score_mode,sim_time,mode,try_mutations)
+        protein_complex=general.complex(chain,pdbID,iteration,score_list,threshold,t_effective,num_mutations,scoring_s,target,score_mode,sim_time,mode,try_mutations)
         protein_complex.configure_folder(folder,src_route,md_route,md_original)
         protein_complex.setup(folder,src_route)
         print("####################################")
@@ -106,7 +109,7 @@ if __name__ == '__main__':
             print("2. Starting the test of FASPR functionalities ...")
             parser = PDBParser()
             reference = parser.get_structure('REF',"design_output/{}/{}.pdb".format(folder,pdbID))
-            local_mutation=mutation.mutate_peptide("design_output/{}".format(folder),peptide_reference,peptide_reference,5,chain,reference,"A","T",0,["A"],0,scwrl_path,src_route)
+            local_mutation=mutation.mutate_peptide("design_output/{}".format(folder),peptide_reference,peptide_reference,5,chain,reference,"A","T",0,["A"],0,scwrl_path,src_route,target)
             local_mutation.replace_amino_acid()
             local_mutation.mutate_faspr()
             if os.path.isfile('design_output/{}/complex.pdb'.format(folder)):
@@ -125,7 +128,7 @@ if __name__ == '__main__':
             print("2. Starting the test of Scwrl4 functionalities ...")
             parser = PDBParser()
             reference = parser.get_structure('REF',"design_output/{}/{}.pdb".format(folder,pdbID))
-            local_mutation=mutation.mutate_peptide("design_output/{}".format(folder),peptide_reference,peptide_reference,5,chain,reference,"A","T",0,["A"],0,scwrl_path,src_route)
+            local_mutation=mutation.mutate_peptide("design_output/{}".format(folder),peptide_reference,peptide_reference,5,chain,reference,"A","T",0,["A"],0,scwrl_path,src_route,target)
             local_mutation.replace_amino_acid()
             local_mutation.mutate_scwrl()
             if os.path.isfile('design_output/{}/complex.pdb'.format(folder)):

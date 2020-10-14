@@ -262,9 +262,9 @@ class score_protein_protein:
         #os.system("./{}/prepare_ligand4.py -l {}_{}.pdb -A 'hydrogens' -U 'nphs_lps' -o {}_{}.pdbqt".format(self.path_scores,path_target,self.chain_binder,path_target,self.chain_binder))
         #os.system("./{}/vina --receptor {}_target.pdbqt --ligand {}_{}.pdbqt --score_only --log {}/score.log".format(self.path_scores,path_target,path_target,self.chain_binder,self.path))
         
-        os.system("./{}/prepare_receptor4.py -r {}_{}.pdb -o {}_{}.pdbqt".format(self.path_scores,path_target,self.chain_binder,path_target,self.chain_binder))
-        os.system("./{}/prepare_ligand4.py -l {}_target.pdb -A 'hydrogens' -U 'nphs_lps' -o {}_target.pdbqt".format(self.path_scores,path_target,path_target))
-        os.system("./{}/vina --receptor {}_{}.pdbqt --ligand {}_target.pdbqt --score_only --log {}/score.log".format(self.path_scores,path_target,self.chain_binder,path_target,self.path))
+        os.system("{}/prepare_receptor4.py -r {}_{}.pdb -o {}_{}.pdbqt".format(self.path_scores,path_target,self.chain_binder,path_target,self.chain_binder))
+        os.system("{}/prepare_ligand4.py -l {}_target.pdb -A 'hydrogens' -U 'nphs_lps' -o {}_target.pdbqt".format(self.path_scores,path_target,path_target))
+        os.system("{}/vina --receptor {}_{}.pdbqt --ligand {}_target.pdbqt --score_only --log {}/score.log".format(self.path_scores,path_target,self.chain_binder,path_target,self.path))
         
         # Check the number of CPUs to filter the VINA file result
         bash="lscpu | grep -E '^CPU\(' | awk '{print $2}'"
@@ -300,9 +300,9 @@ class score_protein_protein:
         # os.system("./{}/prepare_receptor4.py -r {}_target.pdb -o {}_target.pdbqt".format(self.path_scores,path_target,path_target))
         # os.system("./{}/prepare_ligand4.py -l {}_{}.pdb -A 'hydrogens' -U 'nphs_lps' -o {}_{}.pdbqt".format(self.path_scores,path_target,self.chain_binder,path_target,self.chain_binder))
         # os.system("./{}/smina.static --receptor {}_target.pdbqt --ligand {}_{}.pdbqt --score_only --log {}/score.log".format(self.path_scores,path_target,path_target,self.chain_binder,self.path))
-        os.system("./{}/prepare_receptor4.py -r {}_{}.pdb -o {}_{}.pdbqt".format(self.path_scores,path_target,self.chain_binder,path_target,self.chain_binder))
-        os.system("./{}/prepare_ligand4.py -l {}_target.pdb -A 'hydrogens' -U 'nphs_lps' -o {}_target.pdbqt".format(self.path_scores,path_target,path_target))
-        os.system("./{}/smina.static --receptor {}_{}.pdbqt --ligand {}_target.pdbqt --score_only --log {}/score.log".format(self.path_scores,path_target,self.chain_binder,path_target,self.path))
+        os.system("{}/prepare_receptor4.py -r {}_{}.pdb -o {}_{}.pdbqt".format(self.path_scores,path_target,self.chain_binder,path_target,self.chain_binder))
+        os.system("{}/prepare_ligand4.py -l {}_target.pdb -A 'hydrogens' -U 'nphs_lps' -o {}_target.pdbqt".format(self.path_scores,path_target,path_target))
+        os.system("{}/smina.static --receptor {}_{}.pdbqt --ligand {}_target.pdbqt --score_only --log {}/score.log".format(self.path_scores,path_target,self.chain_binder,path_target,self.path))
         
         # Filter the SMINA file result
         bash="head -n22 {}/score.log | tail -n1 | awk '{{print $2}}'".format(self.path)
@@ -333,7 +333,7 @@ class score_protein_protein:
         #os.system("babel -ipdb {}_{}.pdb -omol2 {}_{}.mol2".format(path_target,self.chain_binder,path_target,self.chain_binder))
         #os.system("./{}/cyscore_bin/Cyscore {}_target.pdb {}_{}.mol2 > {}/score.log".format(self.path_scores,path_target,path_target,self.chain_binder,self.path))
         os.system("babel -ipdb {}_target.pdb -omol2 {}_target.mol2".format(path_target,path_target))
-        os.system("./{}/cyscore_bin/Cyscore {}_{}.pdb {}_target.mol2 > {}/score.log".format(self.path_scores,path_target,self.chain_binder,path_target,self.path))
+        os.system("{}/cyscore_bin/Cyscore {}_{}.pdb {}_target.mol2 > {}/score.log".format(self.path_scores,path_target,self.chain_binder,path_target,self.path))
         
         # Filter the Cyscore file result
         bash="grep 'Cyscore=' {}/score.log | awk '{{print $2}}'".format(self.path)
@@ -363,8 +363,8 @@ class score_protein_protein:
                 
         #os.system("./{}/prepare_receptor4.py -r {}_target.pdb -o {}_target.pdbqt".format(self.path_scores,path_target,path_target))
         #os.system("./{}/prepare_ligand4.py -l {}_{}.pdb -A 'hydrogens' -U 'nphs_lps' -o {}_{}.pdbqt".format(self.path_scores,path_target,self.chain_binder,path_target,self.chain_binder))
-        os.system("./{}/prepare_receptor4.py -r {}_{}.pdb -o {}_{}.pdbqt".format(self.path_scores,path_target,self.chain_binder,path_target,self.chain_binder))
-        os.system("./{}/prepare_ligand4.py -l {}_target.pdb -A 'hydrogens' -U 'nphs_lps' -o {}_target.pdbqt".format(self.path_scores,path_target,path_target))
+        os.system("{}/prepare_receptor4.py -r {}_{}.pdb -o {}_{}.pdbqt".format(self.path_scores,path_target,self.chain_binder,path_target,self.chain_binder))
+        os.system("{}/prepare_ligand4.py -l {}_target.pdb -A 'hydrogens' -U 'nphs_lps' -o {}_target.pdbqt".format(self.path_scores,path_target,path_target))
         os.system("python3.5 {}/NNScore2.py -receptor {}_{}.pdbqt -ligand {}_target.pdbqt -vina_executable {}/vina > {}/score.log".format(self.path_scores,path_target,self.chain_binder,path_target,self.path_scores,self.path))
         
         # Filter the NNscore file result
@@ -399,7 +399,7 @@ class score_protein_protein:
         os.system("babel -ipdb {}_target.pdb -omol2 {}_target.mol2".format(path_target,path_target))
         os.system("cp {}/dfire.2 .".format(self.path_scores))
         os.system("cp {}/amino.mol2 .".format(self.path_scores))
-        os.system("./{}/dligand2.intel -P {}_{}.pdb -L {}_target.mol2 > {}/score.log".format(self.path_scores,path_target,self.chain_binder,path_target,self.path))
+        os.system("{}/dligand2.intel -P {}_{}.pdb -L {}_target.mol2 > {}/score.log".format(self.path_scores,path_target,self.chain_binder,path_target,self.path))
         
         # Filter the dligand file result
         bash="head -n1 {}/score.log | tail -n1".format(self.path)
@@ -430,7 +430,7 @@ class score_protein_protein:
         #os.system("babel -ipdb {}_{}.pdb -omol2 {}_{}.mol2".format(path_target,self.chain_binder,path_target,self.chain_binder))
         #os.system("./{}/cyscore_bin/Cyscore {}_target.pdb {}_{}.mol2 > {}/score.log".format(self.path_scores,path_target,path_target,self.chain_binder,self.path))
         os.system("babel -ipdb {}_target.pdb -omol2 {}_target.mol2".format(path_target,path_target))
-        os.system("./{}/dsx_linux_64.lnx -P {}_{}.pdb -L {}_target.mol2 -D {}/pdb_pot_0511 -F {}/score.log".format(self.path_scores,path_target,self.chain_binder,path_target,self.path_scores,self.path))
+        os.system("{}/dsx_linux_64.lnx -P {}_{}.pdb -L {}_target.mol2 -D {}/pdb_pot_0511 -F {}/score.log".format(self.path_scores,path_target,self.chain_binder,path_target,self.path_scores,self.path))
         
         # Filter the DSXscore file result
         bash="sed '/^$/d' {}/score.log | tail -n1 | awk '{{print $7}}'".format(self.path)

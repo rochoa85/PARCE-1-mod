@@ -1,0 +1,12 @@
+The Gromacs test passed successfully
+The Scwrl4 test passed successfully
+Vina score: -9.169
+Smina score: -9.646
+Cyscore score: -3.656
+NNscore score: -8.510
+Dligand score: -4.758
+DSXscore score: -132.723
+The scoring functions test passed successfully
+####################################
+Everything is ready. You can start the protocol :)
+####################################

@@ -134,7 +134,8 @@ class mutate_peptide:
         s = list(sequence)
         seq_size=len(s)
         lastAA=aminoacids[s[-1]]
-        
+       
+        os.system("sed -i 's/CYX/CYS/g' {}/pre-mutated.pdb".format(self.path)) 
         # Modify atom name of the last AA to avoid errors
         if seq_size>=10:
             if seq_size>=100:
@@ -236,7 +237,8 @@ class mutate_peptide:
         s = list(sequence)
         seq_size=len(s)
         lastAA=aminoacids[s[-1]]
-        
+
+        os.system("sed -i 's/CYX/CYS/g' {}/pre-mutated.pdb".format(self.path))        
         # Modify atom name of the last AA to avoid errors
         if seq_size>=10:
             if seq_size>=100:
@@ -358,6 +360,7 @@ class mutate_peptide:
         os.system("rm {}/complex_*.pdb".format(self.path))
         os.system("rm {}/complex_*.gro".format(self.path))
         os.system("rm {}/chains.seq".format(self.path))
+
         os.system("head -n -18 {}/complex_Protein_chain_{}.itp > {}/temp; mv {}/temp {}/complex_Protein_chain_{}.itp".format(self.path,self.pep_chain,self.path,self.path,self.path,self.pep_chain))
         
         # Copy the topol files of the target chains, which are the same always
@@ -427,7 +430,7 @@ class mutate_peptide:
             rc,sout,serr=gromacs.mdrun(deffnm=self.path+"/complex", stdout=False)
             
             # Get the complex pdb file
-            rc,sout,serr=gromacs.trjconv(f=self.path+"/complex.gro",s=self.path+"/complex.tpr", o=self.path+"/min_complex.pdb",stdout=False,input=("1"))
+            rc,sout,serr=gromacs.trjconv(f=self.path+"/complex.gro",s=self.path+"/complex.tpr", n=self.path+"/scmut.ndx", o=self.path+"/min_complex.pdb",stdout=False,input=("complex"))
             os.system("rm posre.itp {path}/complex.tpr {path}/complex.top; grep -v ENDMDL {path}/min_complex.pdb | grep -v MODEL > {path}/complex.pdb; rm {path}/min_complex.pdb {path}/complex.log {path}/complex.trr {path}/complex.edr {path}/scmut.ndx".format(path=self.path))
             
     ########################################################################################  

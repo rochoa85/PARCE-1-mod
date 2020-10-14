@@ -29,6 +29,7 @@ __email__ = "rodrigo.ochoa@udea.edu.co"
 # Modules to import
 ########################################################################################
 import os
+import subprocess
 from src import scoring
 from src import mutation
 from src import general
@@ -43,7 +44,6 @@ if __name__ == '__main__':
     
     bash = "pwd | cut -f 1"
     route = subprocess.check_output(['bash','-c', bash]).strip().decode("utf-8")
-    
     # List of variables that should be defined to create the class
     chain="B"
     pdbID="drug_CQRTRFFKWYRC"
@@ -76,7 +76,7 @@ if __name__ == '__main__':
     gmxrc_path="/usr/local/gromacs/bin/GMXRC"
     os.system(". {}".format(gmxrc_path))
     peptide_mutated="CQRTRSFKWYRC"
-    mutation_method="faspr"
+    mutation_method="scwrl4"
     # File containing the results
     report=open("report_test_drug.txt","w")
     flag_step1=0
@@ -85,10 +85,11 @@ if __name__ == '__main__':
     
     # 1. Test Gromacs functionality
     try:
+    #if flag_step1==0:
         print("1. Starting the test of Gromacs functionalities ...")
         protein_complex=general.complex(chain,pdbID,iteration,score_list,threshold,t_effective,num_mutations,scoring_s,target,score_mode,sim_time,mode,try_mutations)
         protein_complex.configure_folder(folder,src_route,md_route,md_original)
-        protein_complex.setup(folder)
+        protein_complex.setup(folder,src_route)
         print("####################################")
         print("The Gromacs test passed successfully")
         report.write("The Gromacs test passed successfully\n")
@@ -101,12 +102,12 @@ if __name__ == '__main__':
         print("####################################")
     
     # 2. Test mutation functionality
-    if mutation_method=="scwrl4":
+    if mutation_method=="faspr":
         try:
             print("2. Starting the test of FASPR functionalities ...")
             parser = PDBParser()
             reference = parser.get_structure('REF',"design_output/{}/{}.pdb".format(folder,pdbID))
-            local_mutation=mutation.mutate_peptide("design_output/{}".format(folder),peptide_reference,peptide_reference,6,chain,reference,"F","S",0,["A"],0,scwrl_path,target,src_route)
+            local_mutation=mutation.mutate_peptide("design_output/{}".format(folder),peptide_reference,peptide_reference,6,chain,reference,"F","S",0,["A"],0,scwrl_path,src_route,target)
             local_mutation.replace_amino_acid()
             local_mutation.mutate_faspr()
             if os.path.isfile('design_output/{}/complex.pdb'.format(folder)):
@@ -125,7 +126,7 @@ if __name__ == '__main__':
             print("2. Starting the test of Scwrl4 functionalities ...")
             parser = PDBParser()
             reference = parser.get_structure('REF',"design_output/{}/{}.pdb".format(folder,pdbID))
-            local_mutation=mutation.mutate_peptide("design_output/{}".format(folder),peptide_reference,peptide_reference,6,chain,reference,"F","S",0,["A"],0,scwrl_path,target,src_route)
+            local_mutation=mutation.mutate_peptide("design_output/{}".format(folder),peptide_reference,peptide_reference,6,chain,reference,"F","S",0,["A"],0,scwrl_path,src_route,target)
             local_mutation.replace_amino_acid()
             local_mutation.mutate_scwrl()
             if os.path.isfile('design_output/{}/complex.pdb'.format(folder)):

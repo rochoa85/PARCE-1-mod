@@ -1,5 +1,5 @@
 folder: drug_design
-src_route: /home/PARCE-1
+src_route: /home/rochoa/Documents/PARCE-1-mod
 mode: start
 peptide_reference: CQRTRFFKWYRC
 pdbID: drug_CQRTRFFKWYRC
@@ -10,11 +10,11 @@ num_mutations: 5
 try_mutations: 10
 half_flag: 0
 residues_mod: 2,3,4,5,6,7,8,9,10,11
-md_route: /home/PARCE-1/design_input/peptide_drug
+md_route: /home/rochoa/Documents/PARCE-1-mod/design_input/peptide_drug
 md_original: drug_example
 scoring: consensus
 score_list: vina,smina,cyscore,nnscore,dligand,dsxscore
 threshold: 3
-mutation_method: faspr
+mutation_method: scwrl
 scwrl_path: /usr/local/bin/scwrl4/Scwrl4
 gmxrc_path: /usr/local/gromacs/bin/GMXRC

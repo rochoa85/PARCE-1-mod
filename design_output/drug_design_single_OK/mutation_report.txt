@@ -1,0 +1,12 @@
+Structure: drug_CQRTRFFKWYRC
+Iteration_0: Original - Accepted Scores: vina:-9.715039215686275  Sequence:CQRTRFFKWYRC
+Attempt mutation FB7D
+Iteration_1: FB7D - Accepted Scores: vina:-9.551156862745097  Sequence:CQRTRFDKWYRC
+Attempt mutation DB7L
+Iteration_2: DB7L - Accepted Scores: vina:-9.54664705882353  Sequence:CQRTRFLKWYRC
+Attempt mutation TB4M
+Iteration_3: TB4M - Accepted Scores: vina:-9.705725490196079  Sequence:CQRMRFLKWYRC
+Attempt mutation FB6T
+Iteration_4: FB6T - Rejected Scores: vina:-9.36964705882353  Sequence:CQRMRTLKWYRC
+Attempt mutation MB4I
+Iteration_5: MB4I - Accepted Scores: vina:-9.945882352941176  Sequence:CQRIRFLKWYRC

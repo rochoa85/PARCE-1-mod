@@ -144,7 +144,7 @@ class complex:
             # Copy the gro file and topology files
             #rc,sout,serr=gromacs.editconf(f="{}/{}.pdb".format(md_route,md_original_pdb_name), o="design_output/{}/{}.gro".format(folder_name,self.pdbID), stdout=False)
             os.system("cp {}/{}.gro design_output/{}/{}.gro".format(md_route,md_original_pdb_name,folder_name,self.pdbID))
-            os.system("cp {}/topol_Protein_chain_* {}/topol.top design_output/{}".format(md_route,md_route,folder_name))
+            os.system("cp {}/topol_* {}/topol.top design_output/{}".format(md_route,md_route,folder_name))
         
         # Restart from a given iteration
         if self.mode=="restart":
@@ -242,7 +242,7 @@ class complex:
         counter=self.index_ref
         for i,ch in enumerate(self.chains):
             input_for_ndx+=('chain {}'.format(ch),); counter+=1
-            input_for_ndx+=('{} & 1'.format(counter),); counter+=1
+            #input_for_ndx+=('{} & 1'.format(counter),); counter+=1
             if ch != self.binder: input_for_ndx+=('name {} chain{}'.format(counter,ch),) # Changed target by chainA
             else: input_for_ndx+=('name {} binder'.format(counter),) # Create the binder group in the index file
         
@@ -267,7 +267,7 @@ class complex:
         ndx2 = NDX()
         ndx2.read(self.path+"/molecules_2.ndx")
         for i,group in enumerate(ndx2):
-            if i>self.index_ref:
+            if i>len(ref_ndx)-1:
                 ndx1[group]=ndx2[group]
         ndx1.write(self.path+'/molecules.ndx')
         
@@ -655,7 +655,7 @@ class complex:
         
         # Get the sequence of the binder chain
         aminoacids={"ALA":"A","ASP":"D","GLU":"E","PHE":"F","HIS":"H","ILE":"I","LYS":"K","LEU":"L","MET":"M","GLY":"G",
-                    "ASN":"N","PRO":"P","GLN":"Q","ARG":"R","SER":"S","THR":"T","VAL":"V","TRP":"W","TYR":"Y","CYS":"C"}
+                    "ASN":"N","PRO":"P","GLN":"Q","ARG":"R","SER":"S","THR":"T","VAL":"V","TRP":"W","TYR":"Y","CYX":"C","CYS":"C"}
         self.sequence_binder=""
         self.initial_res_pos_binder=0
         parser = PDBParser()
@@ -766,7 +766,7 @@ class complex:
                         self.iteration+=1
             
                         # Configure the new system
-                        mutated_system=complex(self.binder,"system",self.iteration,self.score_list,self.consensus_threshold,self.num_mutations,self.score_mode,self.sim_time,self.mode,self.try_mutations)
+                        mutated_system=complex(self.binder,"system",self.iteration,self.score_list,self.consensus_threshold,self.t_effective,self.num_mutations,self.scoring_s,self.target_type,self.score_mode,self.sim_time,self.mode,self.try_mutations)
                         mutated_system.setup(self.folder_path,self.src_route)
                         print("Running NVT equilibration ...")
                         mutated_system.run_nvt(True)
