@@ -12,3 +12,5 @@ In this version of PARCE, new functionalities have been added to manipulate drug
 
 Additionally, a new option to run single scoring with Metropolis Monte Carlo is available using any of the scoring functions. Finally, for the drug-peptide system, a total of six new scoring functions have been included, so the user has the option to run Metropolis or run consensus scoring with the selected functions. A test is also included to check the tools in the context of the drug-peptide system.
 
+**Examples of successful runs with the drug-peptide system using single and consensus scoring are available in the *design_output* folder.**
+
