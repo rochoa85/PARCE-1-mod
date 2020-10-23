@@ -548,14 +548,14 @@ class complex:
                             total_score["goap"].append(float(sc.goap_score))
                         if s=="bmf-bluues":
                             if only_complex:
-                                total_score["totalbmfbluues"].append(0.0)
-                                total_score["bmf"].append(0.0)
-                                total_score["bluues"].append(0.0)
+                                total_score["bmf-bluues"].append(0.0)
+                                #total_score["bmf"].append(0.0)
+                                #total_score["bluues"].append(0.0)
                             else:
                                 sc.computeBMF()    
-                                total_score["totalbmfbluues"].append(float(sc.totalbmfbluues_score))
-                                total_score["bmf"].append(float(sc.bmf_score))
-                                total_score["bluues"].append(float(sc.bluues_score))
+                                total_score["bmf-bluues"].append(float(sc.totalbmfbluues_score))
+                                #total_score["bmf"].append(float(sc.bmf_score))
+                                #total_score["bluues"].append(float(sc.bluues_score))
                 
                 # Reset everything for next model
                 model_number += 1
@@ -571,9 +571,9 @@ class complex:
                 score_dictionary["dfire"]=mean(total_score["dfire"])
                 score_dictionary["goap"]=mean(total_score["goap"])
             elif s=="bmf-bluues":
-                score_dictionary["totalbmfbluues"]=mean(total_score["totalbmfbluues"])
-                score_dictionary["bmf"]=mean(total_score["bmf"])
-                score_dictionary["bluues"]=mean(total_score["bluues"])
+                score_dictionary["bmf-bluues"]=mean(total_score["bmf-bluues"])
+                #score_dictionary["bmf"]=mean(total_score["bmf"])
+                #score_dictionary["bluues"]=mean(total_score["bluues"])
             else:
                 score_dictionary[s]=mean(total_score[s])
         
@@ -624,9 +624,9 @@ class complex:
                     self.sc_dict_complete["dfire"]=self.sc_dict_complex["dfire"]-self.sc_dict_target["dfire"]-self.sc_dict_binder["dfire"]
                     self.sc_dict_complete["goap"]=self.sc_dict_complex["goap"]-self.sc_dict_target["goap"]-self.sc_dict_binder["goap"]
                 if s=="bmf-bluues":
-                    self.sc_dict_complete["totalbmfbluues"]=self.sc_dict_complex["totalbmfbluues"]-self.sc_dict_target["totalbmfbluues"]-self.sc_dict_binder["totalbmfbluues"]
-                    self.sc_dict_complete["bmf"]=self.sc_dict_complex["bmf"]-self.sc_dict_target["bmf"]-self.sc_dict_binder["bmf"]
-                    self.sc_dict_complete["bluues"]=self.sc_dict_complex["bluues"]-self.sc_dict_target["bluues"]-self.sc_dict_binder["bluues"]
+                    self.sc_dict_complete["bmf-bluues"]=self.sc_dict_complex["bmf-bluues"]-self.sc_dict_target["bmf-bluues"]-self.sc_dict_binder["bmf-bluues"]
+                    #self.sc_dict_complete["bmf"]=self.sc_dict_complex["bmf"]-self.sc_dict_target["bmf"]-self.sc_dict_binder["bmf"]
+                    #self.sc_dict_complete["bluues"]=self.sc_dict_complex["bluues"]-self.sc_dict_target["bluues"]-self.sc_dict_binder["bluues"]
                 else:
                     self.sc_dict_complete[s]=self.sc_dict_complex[s]-self.sc_dict_target[s]-self.sc_dict_binder[s]
             
